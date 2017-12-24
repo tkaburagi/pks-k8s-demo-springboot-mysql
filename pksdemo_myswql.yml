@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata: 
+  name: pksdemo-mysql-deployment
+  labels: 
+    app: pksdemo-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pksdemo-mysql
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: pksdemo-mysql
+    spec:
+      containers:
+      - name: pksdemo-mysql
+        image: tkaburagi/pksdemo-mysql:1.2
+        ports:
+        - containerPort: 8080

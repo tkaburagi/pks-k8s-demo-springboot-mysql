@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: book-store
+
+  #replace to your env
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.60.1.12:3306/books
+    username: root
+    password: password
+  
+  jpa: 
+   database: MYSQL
+   show-sql: true
