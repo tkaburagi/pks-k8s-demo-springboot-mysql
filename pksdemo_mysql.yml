@@ -1,3 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bootapp-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata: 
@@ -16,6 +27,14 @@ spec:
     spec:
       containers:
       - name: pksdemo-mysql
-        image: tkaburagi/pksdemo-mysql:1.2
+        image: tkaburagi/pksdemo-mysql:1.4
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: bootapp-persistent-storage
+          mountPath: /app/data
+      volumes:
+      - name: bootapp-persistent-storage
+        persistentVolumeClaim:
+          claimName: bootapp-pv-claim
+

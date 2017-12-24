@@ -12,3 +12,6 @@ spring:
   jpa: 
    database: MYSQL
    show-sql: true
+
+logging:
+  file: /app/data/log/myapp.log
